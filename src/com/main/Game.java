@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	public static final int WIDTH = 1000;
-	public static final int HEIGTH = WIDTH * 9/16;
+	public static final int HEIGHT = WIDTH * 9/16;
 	
 	public boolean running = false;
 	private Thread gameThread;
@@ -34,14 +34,18 @@ public class Game extends Canvas implements Runnable {
 	private void initialize() {
 
 		//initialize ball
+		this.ball = new Ball();
 		
 		//initialize paddles
+		this.paddle1 = new Paddle(Color.green, true);
+		this.paddle2 = new Paddle(Color.red, false);
+
 	}
 
 
 	private void canvasSetup() {
 		
-		Dimension dimension = new Dimension(WIDTH, HEIGTH);
+		Dimension dimension = new Dimension(WIDTH, HEIGHT);
 		this.setPreferredSize(dimension);
 		this.setMaximumSize(dimension);
 	}
@@ -105,8 +109,11 @@ public class Game extends Canvas implements Runnable {
 		drawBackground(g);
 		
 		//draw ball
+		this.ball.draw(g);
 		
 		//draw paddles and score
+		this.paddle1.draw(g);
+		this.paddle2.draw(g);
 		
 		//dispose, actualy draw
 		g.dispose();
@@ -118,14 +125,14 @@ public class Game extends Canvas implements Runnable {
 
 		//black background
 		g.setColor(Color.black);
-		g.fillRect(0, 0, WIDTH, HEIGTH);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//dotted line
 		g.setColor(Color.white);
 		Graphics2D g2d = (Graphics2D) g;
 		Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] {10}, 0);
 		g2d.setStroke(dashed);
-		g2d.drawLine(WIDTH / 2, 0, WIDTH / 2, HEIGTH);
+		g2d.drawLine(WIDTH / 2, 0, WIDTH / 2, HEIGHT);
 	}
 
 
@@ -145,6 +152,15 @@ public class Game extends Canvas implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	public static int sign(double d) {
+
+		if(d <= 0)
+			return -1;
+		else
+			return 1;
 	}
 
 }
