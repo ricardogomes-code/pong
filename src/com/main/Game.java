@@ -19,8 +19,8 @@ public class Game extends Canvas implements Runnable {
 	public boolean running = false;
 	private Thread gameThread;
 	private Ball ball;
-	private Paddle paddle1;
-	private Paddle paddle2;
+	private Paddle leftPaddle;
+	private Paddle rightPaddle;
 	
 	public Game() {
 		
@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
 		
 		new Window("SimplePong", this);
 		
-		this.addKeyListener(new KeyInput(paddle1, paddle2));
+		this.addKeyListener(new KeyInput(leftPaddle, rightPaddle));
 		this.setFocusable(true);
 	}
 	
@@ -40,8 +40,8 @@ public class Game extends Canvas implements Runnable {
 		this.ball = new Ball();
 		
 		//initialize paddles
-		this.paddle1 = new Paddle(Color.green, true);
-		this.paddle2 = new Paddle(Color.red, false);
+		this.leftPaddle = new Paddle(Color.green, true);
+		this.rightPaddle = new Paddle(Color.red, false);
 
 	}
 
@@ -91,11 +91,11 @@ public class Game extends Canvas implements Runnable {
 	private void update() {
 
 		//update ball
-		this.ball.update(this.paddle1, this.paddle2);
+		this.ball.update(this.leftPaddle, this.rightPaddle);
 		
 		//update paddles
-		this.paddle1.update(this.ball);
-		this.paddle2.update(this.ball);
+		this.leftPaddle.update(this.ball);
+		this.rightPaddle.update(this.ball);
 	}
 
 
@@ -119,8 +119,8 @@ public class Game extends Canvas implements Runnable {
 		this.ball.draw(g);
 		
 		//draw paddles and score
-		this.paddle1.draw(g);
-		this.paddle2.draw(g);
+		this.leftPaddle.draw(g);
+		this.rightPaddle.draw(g);
 		
 		//dispose, actualy draw
 		g.dispose();

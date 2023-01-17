@@ -62,7 +62,6 @@ public class Paddle {
 
 		// update position
 		y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
-		//y = 200;
 
 		// collisions with ball
 		int ballX = ball.getX();

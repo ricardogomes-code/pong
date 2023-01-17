@@ -55,7 +55,7 @@ public void draw(Graphics g) {
 	g.fillRect(x, y, SIZE, SIZE);
 }
 
-public void update(Paddle paddle1, Paddle paddle2) {
+public void update(Paddle leftPaddle, Paddle rightPaddle) {
 
 	//update movement
 	this.x += this.xVel * this.speed;
@@ -67,12 +67,12 @@ public void update(Paddle paddle1, Paddle paddle2) {
 	
 	//with walls
 	if(this.x + this.SIZE >= Game.WIDTH) {
-		paddle1.addPoint();
+		leftPaddle.addPoint();
 		this.reset();
 	}
 	
 	if(x <= 0) {
-		paddle2.addPoint();
+		rightPaddle.addPoint();
 		reset();
 	}
 }

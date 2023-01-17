@@ -5,24 +5,18 @@ import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
 
-	private Paddle lp; // left paddle
+	private Paddle leftPaddle; // left paddle
 	private boolean lup = false; // lup = left up (up1 in video)
 	private boolean ldown = false;
 
-	private Paddle rp; // right paddle
+	private Paddle rightPaddle; // right paddle
 	private boolean rup = false;
 	private boolean rdown = false;
 
-	/**
-	 * constructor
-	 * 
-	 * @param p1 - paddle 1
-	 * @param p2 - paddle 2
-	 */
-	public KeyInput(Paddle p1, Paddle p2) {
+	public KeyInput(Paddle leftPaddle, Paddle rightPaddle) {
 
-		lp = p1;
-		rp = p2;
+		this.leftPaddle = leftPaddle;
+		this.rightPaddle = rightPaddle;
 
 	}
 
@@ -31,19 +25,19 @@ public class KeyInput extends KeyAdapter {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_UP) {
-			rp.switchDirections(-1);
+			rightPaddle.switchDirections(-1);
 			rup = true;
 		}
 		if (key == KeyEvent.VK_DOWN) {
-			rp.switchDirections(1);
+			rightPaddle.switchDirections(1);
 			rdown = true;
 		}
 		if (key == KeyEvent.VK_W) {
-			lp.switchDirections(-1);
+			leftPaddle.switchDirections(-1);
 			lup = true;
 		}
 		if (key == KeyEvent.VK_S) {
-			lp.switchDirections(1);
+			leftPaddle.switchDirections(1);
 			ldown = true;
 		}
 
@@ -76,9 +70,9 @@ public class KeyInput extends KeyAdapter {
 
 		// this is the magic that will stop the lag
 		if (!lup && !ldown)
-			lp.stop();
+			leftPaddle.stop();
 		if (!rup && !rdown)
-			rp.stop();
+			rightPaddle.stop();
 	}
 
 }
