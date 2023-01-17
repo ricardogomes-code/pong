@@ -28,6 +28,9 @@ public class Game extends Canvas implements Runnable {
 		initialize();
 		
 		new Window("SimplePong", this);
+		
+		this.addKeyListener(new KeyInput(paddle1, paddle2));
+		this.setFocusable(true);
 	}
 	
 	
@@ -169,8 +172,7 @@ public class Game extends Canvas implements Runnable {
 
 
 	public static int ensureRange(int value, int min, int max) {
-		
-		return Math.min(Math.min(value, min), max);
+		return Math.min(Math.max(value, min), max);
 	}
 
 }

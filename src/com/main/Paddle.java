@@ -61,8 +61,8 @@ public class Paddle {
 	public void update(Ball ball) {
 
 		// update position
-		//y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
-		y = 200;
+		y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
+		//y = 200;
 
 		// collisions with ball
 		int ballX = ball.getX();
@@ -83,5 +83,14 @@ public class Paddle {
 				ball.changeXDir();
 
 		}
+	}
+
+	public void switchDirections(int direction) {
+		
+		this.vel = this.speed * direction;
+	}
+	
+	public void stop() {
+		this.vel = 0;
 	}
 }
