@@ -91,6 +91,8 @@ public class Game extends Canvas implements Runnable {
 		this.ball.update(this.paddle1, this.paddle2);
 		
 		//update paddles
+		this.paddle1.update(this.ball);
+		this.paddle2.update(this.ball);
 	}
 
 
@@ -163,6 +165,12 @@ public class Game extends Canvas implements Runnable {
 			return -1;
 		else
 			return 1;
+	}
+
+
+	public static int ensureRange(int value, int min, int max) {
+		
+		return Math.min(Math.min(value, min), max);
 	}
 
 }

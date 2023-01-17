@@ -19,6 +19,14 @@ public class Ball {
 		this.reset();
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	private void reset() {
 
 		//initial positions
