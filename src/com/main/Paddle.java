@@ -1,6 +1,7 @@
 package com.main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class Paddle {
@@ -40,5 +41,20 @@ public class Paddle {
 		g.fillRect(this.x, this.y, this.width, this.height);
 		
 		//Draw score
+		int sx;
+		String scoreText = Integer.toString(score);
+		Font font = new Font("Roboto", Font.PLAIN, 50);
+		
+		int strWidth = g.getFontMetrics(font).stringWidth(scoreText);
+		
+		int padding = 25;
+		
+		if(left) 
+			sx = Game.WIDTH / 2 - padding - strWidth;
+		else
+			sx = Game.WIDTH / 2 + padding;
+		
+		g.setFont(font);
+		g.drawString(scoreText, sx, 50);
 	}
 }
