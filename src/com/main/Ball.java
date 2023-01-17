@@ -12,38 +12,60 @@ public class Ball {
 
 	private int xVel;
 	private int yVel;
-	private int speed;
+	private int speed = 5;
 	
 	public Ball() {
 		
-		reset();
+		this.reset();
 	}
 
 	private void reset() {
 
 		//initial positions
-		x = Game.WIDTH / 2 - SIZE / 2;
-		y = Game.HEIGHT / 2 - SIZE / 2;
+		this.x = Game.WIDTH / 2 - this.SIZE / 2;
+		this.y = Game.HEIGHT / 2 - this.SIZE / 2;
 
 
 		//Initial velocities
-		xVel = Game.sign(Math.random() * 2.0 -1);
-		yVel = Game.sign(Math.random() * 2.0 -1);
+		this.xVel = Game.sign(Math.random() * 2.0 -1);
+		this.yVel = Game.sign(Math.random() * 2.0 -1);
 	}
 	
 	public void changeXDir() {
 		
-		xVel *= -1;
+		this.xVel *= -1;
 	}
 	
 public void changeyDir() {
 		
-		yVel *= -1;
+		this.yVel *= -1;
 	}
 
 public void draw(Graphics g) {
 
 	g.setColor(Color.white);
 	g.fillRect(x, y, SIZE, SIZE);
+}
+
+public void update(Paddle paddle1, Paddle paddle2) {
+
+	//update movement
+	this.x += this.xVel * this.speed;
+	this.y += this.yVel * this.speed;
+
+	//collisions
+	if(this.y + this.SIZE >= Game.HEIGHT || y <= 0)
+		this.changeyDir();
+	
+	//with walls
+	if(this.x + this.SIZE >= Game.WIDTH) {
+		paddle1.addPoint();
+		this.reset();
+	}
+	
+	if(x <= 0) {
+		paddle2.addPoint();
+		reset();
+	}
 }
 }

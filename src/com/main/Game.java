@@ -70,7 +70,7 @@ public class Game extends Canvas implements Runnable {
 			lastTime = now;
 			
 			while (delta >= 1) {
-				update();
+				this.update();
 				delta--;
 			}
 			if (running) draw();
@@ -87,6 +87,7 @@ public class Game extends Canvas implements Runnable {
 	private void update() {
 
 		//update ball
+		ball.update(this.paddle1, this.paddle2);
 		
 		//update paddles
 	}
