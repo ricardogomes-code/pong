@@ -66,19 +66,20 @@ public class Game extends Canvas implements Runnable {
 		while(running) {
 			
 			long now = System.nanoTime();
-			delta += (now - lastTime) /ns;
+			delta += (now - lastTime) / ns;
 			lastTime = now;
 			
 			while (delta >= 1) {
 				this.update();
 				delta--;
+				this.draw();
+				frames++;
 			}
-			if (running) draw();
-			frames++;
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println("FPS: " + frames);
+				frames = 0;
 			}
 		}
 		stop();
@@ -87,7 +88,7 @@ public class Game extends Canvas implements Runnable {
 	private void update() {
 
 		//update ball
-		ball.update(this.paddle1, this.paddle2);
+		this.ball.update(this.paddle1, this.paddle2);
 		
 		//update paddles
 	}
